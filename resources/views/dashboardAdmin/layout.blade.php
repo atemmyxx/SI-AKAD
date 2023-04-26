@@ -90,34 +90,35 @@
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('guru.index') }}">Data Guru
-                                        <i class="mdi mdi-account-box menu-icon"></i></a>
+                                    <a class="nav-link" href="{{ route('guru.index') }}">
+                                        <i class="mdi mdi-account-box menu-icon"></i>Data Guru</a>
+
                                 </li>
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="{{ route('siswa.index') }}"> Data Siswa
-                                        <i class="mdi mdi-account-multiple menu-icon"></i></a>
+                                    <a class="nav-link" href="{{ route('siswa.index') }}">
+                                        <i class="mdi mdi-account-multiple menu-icon"></i>Data Siswa</a>
                                 </li>
 
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="{{ route('kelas.index') }}">Data Kelas
-                                        <i class="mdi mdi-city menu-icon"></i></a>
+                                    <a class="nav-link" href="{{ route('kelas.index') }}">
+                                        <i class="mdi mdi-city menu-icon"></i>Data Kelas</a>
                                 </li>
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="{{ route('mapel.index') }}">Data Mata Pelajaran
-                                        <i class="mdi mdi-book-open menu-icon"></i></a>
+                                    <a class="nav-link" href="{{ route('mapel.index') }}">
+                                        <i class="mdi mdi-book-open menu-icon"></i> Data Mata Pelajaran</a>
                                 </li>
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="{{ route('jadwal.index') }}">Data Jadwal
-                                        <i class="mdi mdi-alarm-check menu-icon"></i></a>
+                                    <a class="nav-link" href="{{ route('jadwal.index') }}">
+                                        <i class="mdi mdi-alarm-check menu-icon"></i>Data Jadwal</a>
                                 </li>
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="{{ route('thn-akademik.index') }}">Data Tahun Akademik
-                                        <i class="mdi mdi-alarm menu-icon"></i></a>
+                                    <a class="nav-link" href="{{ route('thn-akademik.index') }}">
+                                        <i class="mdi mdi-alarm menu-icon"></i>Data Tahun Akademik</a>
                                 </li>
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="{{ route('ekstrakulikuler.index') }}">Data
-                                        Ekstrakurikuler
-                                        <i class="mdi mdi-football menu-icon"></i></a>
+                                    <a class="nav-link" href="{{ route('ekstrakulikuler.index') }}">
+                                        <i class="mdi mdi-football menu-icon"></i>Data Ekstrakulikuler
+                                    </a>
                                 </li>
                             </ul>
                     <li class="nav-item">
@@ -137,12 +138,14 @@
                         <div class="collapse" id="auth">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="{{ route('jns-pembayaran.index') }}">Jenis
-                                        Pembayaran <i class="mdi mdi-note-text menu-icon"></i></a></a>
+                                        href="{{ route('jns-pembayaran.index') }}"><i
+                                            class="mdi mdi-note-text menu-icon"></i> Jenis
+                                        Pembayaran</a>
                                 </li>
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="{{ route('catat-pembayaran.index') }}"> Catat
-                                        Pembayaran <i class="mdi mdi-pencil-box-outline menu-icon"></i></a>
+                                        href="{{ route('catat-pembayaran.index') }}"><i
+                                            class="mdi mdi-pencil-box-outline menu-icon"></i>Catat
+                                        Pembayaran</a>
                                     </a></li>
                             </ul>
                         </div>

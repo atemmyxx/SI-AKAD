@@ -23241,7 +23241,7 @@ dl li {
 .sidebar .nav .nav-item .nav-link i.menu-icon {
     font-size: 1.125rem;
     line-height: 1;
-    margin-right: 1.125rem;
+    margin-right: 5px;
     color: inherit;
 }
 
