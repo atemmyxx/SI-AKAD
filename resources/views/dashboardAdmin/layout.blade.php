@@ -89,8 +89,8 @@
 
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="{{ route('guru.index') }}">Data Guru
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('guru.index') }}">Data Bima
                                         <i class="mdi mdi-account-box menu-icon"></i></a>
                                 </li>
                                 <li class="nav-item ">
