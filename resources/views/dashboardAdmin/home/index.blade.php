@@ -5,7 +5,7 @@
             <div class="card mb-5">
                 <div class="card-body"
                     style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
-                    <h1>10</h1>
+                    <h1>6</h1>
                     <h3 class="card-text">Data Siswa</h3>
                     <a href="#" class="btn btn-primary">Lihat</a>
                 </div>
@@ -15,7 +15,7 @@
             <div class="card mb-5">
                 <div class="card-body"
                     style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
-                    <h1>10</h1>
+                    <h1>5</h1>
                     <h3 class="card-text">Data Guru</h3>
                     <a href="{{ route('guru.index') }}" class="btn btn-primary">Lihat</a>
                 </div>
@@ -25,7 +25,7 @@
             <div class="card mb-5">
                 <div class="card-body"
                     style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
-                    <h1>10</h1>
+                    <h1>4</h1>
                     <h3 class="card-text">Data Kelas</h3>
                     <a href="#" class="btn btn-primary">Lihat</a>
                 </div>
@@ -35,7 +35,7 @@
             <div class="card mb-5">
                 <div class="card-body"
                     style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
-                    <h1>10</h1>
+                    <h1>7</h1>
                     <h3 class="card-text">Data Mata Pelajaran</h3>
                     <a href="#" class="btn btn-primary">Lihat</a>
                 </div>
