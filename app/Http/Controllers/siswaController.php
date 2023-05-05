@@ -23,7 +23,7 @@ class siswaController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboardAdmin.siswa.create');
     }
 
     /**

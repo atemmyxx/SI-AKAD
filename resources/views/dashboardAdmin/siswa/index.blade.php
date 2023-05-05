@@ -3,7 +3,7 @@
 @section('content')
     <h3 class=" p-2 text-secondary">Data Siswa</h3>
     <div class="table-responsive">
-        <a href="" class="btn btn-primary m-2"><span class="mdi mdi-plus"></span>Tambah Siswa</a>
+        <a href="{{ route('siswa.create') }}" class="btn btn-primary m-2"><span class="mdi mdi-plus"></span>Tambah Siswa</a>
         <table class="table">
             <thead>
                 <tr class="table-primary">
@@ -24,7 +24,7 @@
                     <td>Ahmad Temmy Rietoni S.Kom</td>
                     <td>VII A</td>
                     <td>Laki-Laki</td>
-                    <td>Muniroh</td>
+                    <td>Ahmad Ton Baindhowi/Muniroh</td>
                     <td>Esih Ayuningsih S.pd</td>
                     <td>
                         <div class="dropdown">

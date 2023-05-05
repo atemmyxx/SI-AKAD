@@ -24,8 +24,20 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="nama">Nama :</label>
-                        <input type="nama" class="form-control border border-secondary" id="nama"
+                        <input type="text" class="form-control border border-secondary" id="nama"
                             placeholder="name@example.com" name="nama">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="tempat_lahir">Tempat Lahir :</label>
+                        <input type="text" class="form-control border border-secondary" id="tempat_lahir"
+                            placeholder="name@example.com" name="tempat_lahir">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="tgl_lahir">Tanggal Lahir :</label>
+                        <input type="date" class="form-control border border-secondary" id="tgl_lahir"
+                            placeholder="name@example.com" name="tgl_lahir">
                     </div>
                     <div class="form-group mb-3">
                         <label for="category" class="form-label">Jenis Kelamin</label>
@@ -36,6 +48,11 @@
                         </select>
                     </div>
 
+                    <div class="form-group mb-3">
+                        <label for="nohp_guru">Nomor HP :</label>
+                        <input type="text" class="form-control border border-secondary" id="nohp_guru"
+                            placeholder="name@example.com" name="nohp_guru">
+                    </div>
 
                     <div class="form-group mb-3">
                         <label for="alamat">Alamat :</label>
