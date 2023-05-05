@@ -23,7 +23,7 @@ class guruController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboardAdmin.guru.create');   
     }
 
     /**
