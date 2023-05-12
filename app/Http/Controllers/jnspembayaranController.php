@@ -23,7 +23,7 @@ class jnspembayaranController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboardAdmin.jns-pembayaran.create');
     }
 
     /**

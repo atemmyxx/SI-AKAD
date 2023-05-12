@@ -3,7 +3,7 @@
 @section('content')
     <h3 class=" p-2 text-secondary">Data Kelas</h3>
     <div class="table-responsive">
-        <a href=" {{ route('kelas.create') }}" class="btn btn-primary m-2"><span class="mdi mdi-plus"></span>Tambah Kelas</a>
+        <a href="{{ route('kelas.create') }}" class="btn btn-primary m-2"><span class="mdi mdi-plus"></span>Tambah Kelas</a>
         <table class="table">
             <thead>
                 <tr class="table-primary">

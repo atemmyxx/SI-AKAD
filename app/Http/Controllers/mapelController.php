@@ -23,7 +23,7 @@ class mapelController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboardAdmin.mapel.create');
     }
 
     /**

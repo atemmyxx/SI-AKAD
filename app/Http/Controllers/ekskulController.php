@@ -23,7 +23,7 @@ class ekskulController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboardAdmin.ekstrakulikuler.create');
     }
 
     /**

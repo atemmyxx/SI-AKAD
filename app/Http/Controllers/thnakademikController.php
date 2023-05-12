@@ -23,7 +23,7 @@ class thnakademikController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboardAdmin.thn-akademik.create');
     }
 
     /**

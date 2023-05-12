@@ -23,7 +23,7 @@ class kelasController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboardAdmin.kelas.create');
     }
 
     /**

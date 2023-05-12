@@ -3,7 +3,8 @@
 @section('content')
     <h3 class=" p-2 text-secondary">Data Ekstrakulikuler</h3>
     <div class="table-responsive">
-        <a href="" class="btn btn-primary m-2"><span class="mdi mdi-plus"></span>Tambah Ekstrakulikuler</a>
+        <a href="{{ route('ekstrakulikuler.create') }}" class="btn btn-primary m-2"><span class="mdi mdi-plus"></span>Tambah
+            Ekstrakulikuler</a>
         <table class="table">
             <thead>
                 <tr class="table-primary">

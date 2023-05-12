@@ -40,8 +40,8 @@
                             placeholder="name@example.com" name="tgl_lahir">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="category" class="form-label">Jenis Kelamin</label>
-                        <select class="form-select" aria-label="Default select example" name="category_id">
+                        <label for="jns_kelamin" class="form-label">Jenis Kelamin</label>
+                        <select class="form-select" aria-label="Default select example" name="jns_kelamin">
                             <option selected>Pilih</option>
                             <option value="1">Laki-Laki</option>
                             <option value="2">Perempuan</option>
