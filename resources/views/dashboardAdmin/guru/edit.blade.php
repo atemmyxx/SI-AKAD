@@ -1,18 +1,19 @@
 @extends('dashboardAdmin.layout')
 
 @section('content')
-    <h3 class=" p-2 text-secondary"> Tambah Data Guru</h3>
+    <h3 class=" p-2 text-secondary"> Edit Data Guru</h3>
     <div class="row">
         <div class="col-lg-8">
             <div class="m-3">
-                <form action="{{ route('guru.store') }}" method="POST">
+                <form action="{{ route('guru.update', $guru->id) }}" method="POST">
                     @csrf
+                    @method('put')
                     <div class="form-group mb-3">
                         <label for="username_guru" class="font-weight-bold">Username :</label>
                         <input type="text"
                             class="form-control border border-secondary @error('username_guru') is-invalid @enderror"
                             id="username_guru" placeholder="name@example.com" name="username_guru"
-                            value="{{ old('username_guru') }}">
+                            value="{{ old('username_guru', $guru->username_guru) }}" required>
                         @error('username_guru')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -23,7 +24,8 @@
                         <label for="password">Password :</label>
                         <input type="password"
                             class="form-control border border-secondary @error('password') is-invalid @enderror"
-                            id="password" placeholder="name@example.com" name="password" value="{{ old('password') }}">
+                            id="password" placeholder="name@example.com" name="password"
+                            value="{{ old('password', $guru->password) }}" required>
                         @error('password')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -35,7 +37,7 @@
                         <label for="nip">NIP :</label>
                         <input type="text"
                             class="form-control border border-secondary @error('nip') is-invalid @enderror" id="nip"
-                            placeholder="name@example.com" name="nip" value="{{ old('nip') }}">
+                            placeholder="name@example.com" name="nip" value="{{ old('nip', $guru->nip) }}" required>
                         @error('nip')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -46,7 +48,8 @@
                         <label for="nama_guru">Nama :</label>
                         <input type="text"
                             class="form-control border border-secondary @error('nama_guru') is-invalid @enderror"
-                            id="nama_guru" placeholder="name@example.com" name="nama_guru" value="{{ old('nama_guru') }}">
+                            id="nama_guru" placeholder="name@example.com" name="nama_guru"
+                            value="{{ old('nama_guru', $guru->nama_guru) }}" required>
                         @error('nama_guru')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -59,7 +62,7 @@
                         <input type="text"
                             class="form-control border border-secondary @error('tempat_lahir_guru') is-invalid @enderror"
                             id="tempat_lahir_guru" placeholder="name@example.com" name="tempat_lahir_guru"
-                            value="{{ old('tempat_lahir_guru') }}">
+                            value="{{ old('tempat_lahir_guru', $guru->tempat_lahir_guru) }}"required>
                         @error('tempat_lahir_guru')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -72,7 +75,7 @@
                         <input type="date"
                             class="form-control border border-secondary @error('tgl_lahir_guru') is-invalid @enderror"
                             id="tgl_lahir_guru" placeholder="name@example.com" name="tgl_lahir_guru"
-                            value="{{ old('tgl_lahir_guru') }}">
+                            value="{{ old('tgl_lahir_guru', $guru->tgl_lahir_guru) }}" required>
                         @error('tgl_lahir_guru')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -84,7 +87,7 @@
                         <label for="jns_kelamin_guru" class="form-label">Jenis Kelamin</label>
                         <select class="form-select @error('jns_kelamin_guru') is-invalid @enderror"
                             aria-label="Default select example" name="jns_kelamin_guru"
-                            value="{{ old('jns_kelamin_guru') }}">
+                            value="{{ old('jns_kelamin_guru', $guru->jns_kelamin_guru) }}" required>
                             @error('jns_kelamin_guru')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -100,7 +103,7 @@
                         <label for="pendidikan_terakhir_guru" class="form-label">Pendidikan Terakhir :</label>
                         <select class="form-select @error('pendidikan_terakhir_guru') is-invalid @enderror"
                             aria-label="Default select example" name="pendidikan_terakhir_guru"
-                            value="{{ old('pendidikan_terakhir_guru') }}">
+                            value="{{ old('pendidikan_terakhir_guru', $guru->pendidikan_terakhir_guru) }}" required>
                             @error('pendidikan_terakhir_guru')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -120,7 +123,8 @@
                         <label for="nohp_guru">Nomor HP :</label>
                         <input type="numeric"
                             class="form-control border border-secondary  @error('nohp_guru') is-invalid @enderror"
-                            id="nohp_guru" placeholder="name@example.com" name="nohp_guru" value="{{ old('nohp_guru') }}">
+                            id="nohp_guru" placeholder="name@example.com" name="nohp_guru"
+                            value="{{ old('nohp_guru', $guru->nohp_guru) }}" required>
                         @error('nohp_guru')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -133,7 +137,7 @@
                         <input type="text"
                             class="form-control border border-secondary @error('alamat_guru') is-invalid @enderror"
                             id="alamat_guru" placeholder="name@example.com" name="alamat_guru"
-                            value="{{ old('alamat_guru') }}">
+                            value="{{ old('alamat_guru', $guru->alamat_guru) }}" required>
                         @error('alamat_guru')
                             <div class="invalid-feedback">
                                 {{ $message }}

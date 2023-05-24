@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
+use App\Models\Tahun_akademik;
 use Illuminate\Http\Request;
 
 class thnakademikController extends Controller
@@ -13,7 +15,8 @@ class thnakademikController extends Controller
      */
     public function index()
     {
-        return view('dashboardAdmin.thn-akademik.index');
+        $thnakademik = Tahun_akademik::orderBy('thn_akademik', 'asc')->get();
+        return view('dashboardAdmin.thn-akademik.index')->with('thnakademik', $thnakademik);;
     }
 
     /**
@@ -34,7 +37,14 @@ class thnakademikController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $thnakademik = $request->validate([
+            'thn_akademik' => 'required|max:255',
+            'semester' => 'required',
+            'status' => 'required'
+        ]);
+
+        Tahun_akademik::create($thnakademik);
+        return redirect()->route('thn-akademik.index')->with('success', 'Tahun Akademik berhasil ditambahkan');
     }
 
     /**
@@ -56,7 +66,8 @@ class thnakademikController extends Controller
      */
     public function edit($id)
     {
-        //
+        $thnakademik = Tahun_akademik::where('id', $id)->first();
+        return view('dashboardAdmin.thn-akademik.edit')->with('thnakademik', $thnakademik);
     }
 
     /**
@@ -68,7 +79,14 @@ class thnakademikController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $thnakademik = $request->validate([
+            'thn_akademik' => 'required|max:255',
+            'semester' => 'required',
+            'status' => 'required'
+        ]);
+
+        Tahun_akademik::where('id', $id)->update($thnakademik);
+        return redirect()->route('thn-akademik.index')->with('success', 'Tahun Akademik berhasil diedit');
     }
 
     /**
@@ -79,6 +97,7 @@ class thnakademikController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Tahun_akademik::where('id', $id)->delete();
+        return redirect()->route('thn-akademik.index')->with('success', 'Tahun Akademik berhasil dihapus');
     }
 }

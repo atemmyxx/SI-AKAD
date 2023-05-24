@@ -4,7 +4,7 @@
     <section class="vh-100 mt-2">
         <div class="col-lg-12 text-center mb-4">
             <main class="form-registration">
-                <h1 class="animate__animated animate__heartBeat animate__infinite">
+                <h1>
                     Sistem Informasi Akademik
                 </h1>
 

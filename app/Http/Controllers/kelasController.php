@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
+use App\Models\Tahun_akademik;
 use Illuminate\Http\Request;
 
 class kelasController extends Controller
@@ -13,7 +15,9 @@ class kelasController extends Controller
      */
     public function index()
     {
-        return view('dashboardAdmin.kelas.index');
+
+        $kelas = Kelas::orderBy('thn_akademik', 'asc')->get();
+        return view('dashboardAdmin.kelas.index')->with('kelas', $kelas);
     }
 
     /**
@@ -34,7 +38,14 @@ class kelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kelas = $request->validate([
+            'thn_akademik' => 'required',
+            'nm_kelas' => 'required|max:255',
+            'nm_walikelas' => 'required|max:255',
+            
+        ]);
+        Kelas::create($kelas);
+        return redirect()->route('kelas.index')->with('success', 'Kelas berhasil ditambahkan');
     }
 
     /**
@@ -56,7 +67,8 @@ class kelasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kelas = Kelas::where('id', $id)->first();
+        return view('dashboardAdmin.kelas.edit')->with('kelas', $kelas);
     }
 
     /**
@@ -68,7 +80,15 @@ class kelasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $kelas = $request->validate([
+            'thn_akademik' => 'required',
+            'nm_kelas' => 'required|max:255',
+            'nm_walikelas' => 'required|max:255',
+
+        ]);
+
+        Kelas::where('id', $id)->update($kelas);
+        return redirect()->route('kelas.index')->with('success', 'Kelas berhasil diedit');
     }
 
     /**
@@ -79,6 +99,7 @@ class kelasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Kelas::where('id', $id)->delete();
+        return redirect()->route('kelas.index')->with('success', 'Kelas berhasil dihapus');
     }
 }

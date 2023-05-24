@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use Illuminate\Http\Request;
 
 class guruController extends Controller
@@ -13,7 +14,8 @@ class guruController extends Controller
      */
     public function index()
     {
-        return view('dashboardAdmin.guru.index');
+        $guru = Guru::orderBy('nama_guru', 'desc')->get();
+        return view('dashboardAdmin.guru.index')->with('guru', $guru);
     }
 
     /**
@@ -23,7 +25,7 @@ class guruController extends Controller
      */
     public function create()
     {
-        return view('dashboardAdmin.guru.create');   
+        return view('dashboardAdmin.guru.create');
     }
 
     /**
@@ -34,7 +36,23 @@ class guruController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $guru = $request->validate([
+            'username_guru' => 'required',
+            'password' => 'required|min:8',
+            'nama_guru' => 'required|max:255',
+            'nip' => 'required|numeric',
+            'tempat_lahir_guru' => 'required|max:255',
+            'tgl_lahir_guru' => 'required|max:255',
+            'jns_kelamin_guru' => 'required|max:255',
+            'pendidikan_terakhir_guru' => 'required|max:255',
+            'nohp_guru' => 'required|numeric',
+            'alamat_guru' => 'required|max:255',
+
+
+        ]);
+
+        Guru::create($guru);
+        return redirect()->route('guru.index')->with('success', 'Data guru berhasil ditambahkan');
     }
 
     /**
@@ -56,7 +74,8 @@ class guruController extends Controller
      */
     public function edit($id)
     {
-        //
+        $guru = Guru::where('id', $id)->first();
+        return view('dashboardAdmin.guru.edit')->with('guru', $guru);
     }
 
     /**
@@ -68,7 +87,20 @@ class guruController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $guru = $request->validate([
+            'username_guru' => 'required',
+            'password' => 'required|min:8',
+            'nama_guru' => 'required|max:255',
+            'nip' => 'required|numeric',
+            'tgl_lahir_guru' => 'required|max:255',
+            'jns_kelamin_guru' => 'required|max:255',
+            'pendidikan_terakhir_guru' => 'required|max:255',
+            'nohp_guru' => 'required|numeric',
+            'alamat_guru' => 'required|max:255',
+        ]);
+
+        Guru::where('id', $id)->update($guru);
+        return redirect()->route('guru.index')->with('success', 'Data guru berhasil diedit');
     }
 
     /**
@@ -79,6 +111,7 @@ class guruController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Guru::where('id', $id)->delete();
+        return redirect()->route('guru.index')->with('success', ' Data guru berhasil dihapus');
     }
 }

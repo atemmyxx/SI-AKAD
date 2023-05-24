@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Catat_pembayaran;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,11 +14,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ekskuls', function (Blueprint $table) {
+        Schema::create('catat_pembayarans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_ekskul');
-            $table->string('hari_ekskul');
-            $table->string('waktu_ekskul');
+            $table->bigInteger('nisn');
+            $table->string('kelas');
+            $table->string('nama_siswa');
+            $table->string('jenis_pembayaran');
+            $table->string('jumlah_pembayaran');
+            $table->string('tgl_pembayaran');
             $table->timestamps();
         });
     }
@@ -29,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ekskuls');
+        Schema::dropIfExists('catat_pembayarans');
     }
 };

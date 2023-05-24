@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Guru extends Model
 {
     use HasFactory;
-    protected $fillable = ['username', 'password', 'jns_kelamin', 'alamat'];
+    protected $guarded = ['id'];
 }

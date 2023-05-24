@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ekskul;
 use Illuminate\Http\Request;
 
 class ekskulController extends Controller
@@ -13,7 +14,8 @@ class ekskulController extends Controller
      */
     public function index()
     {
-        return view('dashboardAdmin.ekstrakulikuler.index');
+        $ekstrakulikuler = Ekskul::orderBy('nama_ekskul', 'desc')->get();
+        return view('dashboardAdmin.ekstrakulikuler.index')->with('ekstrakulikuler', $ekstrakulikuler);
     }
 
     /**
@@ -34,7 +36,14 @@ class ekskulController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ekstrakulikuler = $request->validate([
+            'nama_ekskul' => 'required|max:255',
+            'hari_ekskul' => 'required|max:255',
+            'waktu_ekskul' => 'required|max:255',
+        ]);
+
+        Ekskul::create($ekstrakulikuler);
+        return redirect()->route('ekstrakulikuler.index')->with('success', 'Ekstrakulikuler berhasil ditambahkan');
     }
 
     /**
@@ -56,7 +65,8 @@ class ekskulController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ekstrakulikuler = Ekskul::where('id', $id)->first();
+        return view('dashboardAdmin.ekstrakulikuler.edit')->with('ekstrakulikuler', $ekstrakulikuler);
     }
 
     /**
@@ -68,7 +78,14 @@ class ekskulController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ekstrakulikuler = $request->validate([
+            'nama_ekskul' => 'required|max:255',
+            'hari_ekskul' => 'required|max:255',
+            'waktu_ekskul' => 'required|max:255',
+        ]);
+
+        Ekskul::where('id', $id)->update($ekstrakulikuler);
+        return redirect()->route('ekstrakulikuler.index')->with('success', 'Ekstrakulikuler berhasil diedit');
     }
 
     /**
@@ -79,6 +96,7 @@ class ekskulController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Ekskul::where('id', $id)->delete();
+        return redirect()->route('ekstrakulikuler.index')->with('success', 'Ekstrakulikuler berhasil dihapus');
     }
 }

@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('jns_pembayarans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('kd_jns_pembayaran');
+            $table->string('nama_jns_pembayaran');
             $table->timestamps();
         });
     }

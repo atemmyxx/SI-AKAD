@@ -17,6 +17,16 @@
     <link rel="stylesheet" href="{{ asset('admin') }}/css/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('admin') }}/images/favicon.png" />
+
+    {{-- trix editor --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/css/trix.css">
+    <script type="text/javascript" src="{{ asset('admin') }}/js/trix.js"></script>
+
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,10 +35,7 @@
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="navbar-brand-wrapper d-flex justify-content-center">
                 <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-                    <a class="navbar-brand brand-logo" href="index.html"><img
-                            src="{{ asset('admin') }}/images/yapkum.png" alt="logo" />
-
-                    </a>
+                    <h3>SIAKAD</h3>
                     <a class="navbar-brand brand-logo-mini" href="index.html"><img
                             src="{{ asset('admin') }}/images/logo-mini.svg" alt="logo" /></a>
                     <button class="navbar-toggler navbar-toggler align-self-center" type="button"
@@ -47,10 +54,6 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
-                            <a class="dropdown-item">
-                                <i class="mdi mdi-settings text-primary"></i>
-                                Settings
-                            </a>
                             <a class="dropdown-item" href="/logout">
                                 <i class="mdi mdi-logout text-primary"></i>
                                 Logout
@@ -92,17 +95,24 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('guru.index') }}">
                                         <i class="mdi mdi-account-box menu-icon"></i>Data Guru</a>
-
                                 </li>
+
                                 <li class="nav-item ">
                                     <a class="nav-link" href="{{ route('siswa.index') }}">
                                         <i class="mdi mdi-account-multiple menu-icon"></i>Data Siswa</a>
                                 </li>
 
                                 <li class="nav-item ">
+                                    <a class="nav-link" href="{{ route('orang_tua.index') }}">
+                                        <i class="mdi mdi-account-multiple menu-icon"></i>Data Orang Tua | Akun
+                                    </a>
+                                </li>
+
+                                <li class="nav-item ">
                                     <a class="nav-link" href="{{ route('kelas.index') }}">
                                         <i class="mdi mdi-city menu-icon"></i>Data Kelas</a>
                                 </li>
+
                                 <li class="nav-item ">
                                     <a class="nav-link" href="{{ route('mapel.index') }}">
                                         <i class="mdi mdi-book-open menu-icon"></i> Data Mata Pelajaran</a>
@@ -155,6 +165,7 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
+                    {{-- @include('dashboardAdmin.pesan') --}}
                     <div class="row">
                         <div class="col-lg-12 stretch-card">
                             <div class="card">

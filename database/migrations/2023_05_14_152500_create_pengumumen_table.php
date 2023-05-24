@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ekskuls', function (Blueprint $table) {
+        Schema::create('pengumuman', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_ekskul');
-            $table->string('hari_ekskul');
-            $table->string('waktu_ekskul');
+            $table->string('tanggal');
+            $table->string('judul');
+            $table->text('isi');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ekskuls');
+        Schema::dropIfExists('pengumuman');
     }
 };

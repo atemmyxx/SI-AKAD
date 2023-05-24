@@ -10,6 +10,7 @@ use App\Http\Controllers\jnspembayaranController;
 use App\Http\Controllers\kelasController;
 use App\Http\Controllers\Logincontroller;
 use App\Http\Controllers\mapelController;
+use App\Http\Controllers\ortuController;
 use App\Http\Controllers\pengumumanController;
 use App\Http\Controllers\Registrasicontroller;
 use App\Http\Controllers\siswaController;
@@ -47,6 +48,7 @@ Route::prefix('dashboard')->group(
         Route::resource('home', homeController::class);
         Route::resource('guru', guruController::class);
         Route::resource('siswa', siswaController::class);
+        Route::resource('orang_tua', ortuController::class);
         Route::resource('kelas', kelasController::class);
         Route::resource('mapel', mapelController::class);
         Route::resource('jadwal', jadwalController::class);

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('tgl_lahir');
             $table->string('kelas');
             $table->string('walikelas');
+            $table->string('ekskul_siswa');
             $table->string('jns_kelamin');
             $table->bigInteger('nohp_siswa');
             $table->string('nama_ayah');
@@ -30,7 +31,7 @@ return new class extends Migration
             $table->bigInteger('nohp_ortu');
             $table->string('alamat');
             $table->string('nama_wali');
-            $table->bigInteger('nohp_wali');
+            $table->string('nohp_wali');
             $table->string('alamat_wali');
             $table->timestamps();
         });
