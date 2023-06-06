@@ -2,8 +2,7 @@
 @section('container')
     <section class="vh-100 mt-2">
         <div class="col-lg-12 text-center mb-4">
-            <h1 class="">Sistem
-                Informasi Akademik</h1>
+            <h1 class="">Sistem Informasi Akademik</h1>
 
         </div>
         <div class="container-fluid h-custom">
@@ -30,7 +29,7 @@
                         </div>
                     @endif --}}
                     {{-- *********************************************** --}}
-                    <h2><span style="color: lightslategray">Login</span> </h2>
+                    <h2><span style="color: lightslategray">Login Admin</span> </h2>
                     @if (Session::has('message'))
                         <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert" style="display: flex;justify-content: space-between;padding-right: 10px;">
                             {{ Session::get('message') }}
@@ -39,7 +38,7 @@
                             </button>
                         </div>
                     @endif
-                    <form method="POST" action="{{ route('login') }}" class="" novalidate="">
+                    <form method="POST" action="{{ route('admin_login') }}" class="" novalidate="">
                     {{ csrf_field() }}
                         {{--   @csrf berfungsi untuk mengamankan form dari serangan --}}
                         @csrf

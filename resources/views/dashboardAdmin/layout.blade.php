@@ -50,7 +50,11 @@
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                             id="profileDropdown">
                             <img src="{{ asset('admin') }}/images/faces/face5.jpg" alt="profile" />
-                            <span class="nav-profile-name">Admin</span>
+                            @if (Auth::guard('web')->check())
+                            <span class="nav-profile-name">{{ Auth::user()->name }}</span>
+                            @elseif (Auth::guard('siswa')->check())
+                            <span class="nav-profile-name">{{ Auth::user()->nama }}</span>
+                            @endif
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
@@ -75,91 +79,96 @@
                     <li class="nav-item">
                         <span class="menu-title m-3 fw-bold fs-5" style="color: gray">Admin</span>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home.index') }}">
                             <i class="mdi mdi-home menu-icon"></i>
                             <span class="menu-title fw-bold">Home</span>
                         </a>
                     </li>
+                    @if (Auth::guard('web')->check())
+                        <li class="nav-item ">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                                aria-controls="ui-basic">
+                                <i class="mdi mdi-database menu-icon"></i>
+                                <span class="menu-title fw-bold">Data Master</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                        </li>
 
-                    <li class="nav-item ">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                            aria-controls="ui-basic">
-                            <i class="mdi mdi-database menu-icon"></i>
-                            <span class="menu-title fw-bold">Data Master</span>
-                            <i class="menu-arrow"></i>
-                        </a>
+                            <div class="collapse" id="ui-basic">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('guru.index') }}">
+                                            <i class="mdi mdi-account-box menu-icon"></i>Data Guru</a>
+                                    </li>
 
-                        <div class="collapse" id="ui-basic">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('guru.index') }}">
-                                        <i class="mdi mdi-account-box menu-icon"></i>Data Guru</a>
-                                </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="{{ route('siswa.index') }}">
+                                            <i class="mdi mdi-account-multiple menu-icon"></i>Data Siswa</a>
+                                    </li>
 
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="{{ route('siswa.index') }}">
-                                        <i class="mdi mdi-account-multiple menu-icon"></i>Data Siswa</a>
-                                </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="{{ route('orang_tua.index') }}">
+                                            <i class="mdi mdi-account-multiple menu-icon"></i>Data Orang Tua | Akun
+                                        </a>
+                                    </li>
 
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="{{ route('orang_tua.index') }}">
-                                        <i class="mdi mdi-account-multiple menu-icon"></i>Data Orang Tua | Akun
-                                    </a>
-                                </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="{{ route('kelas.index') }}">
+                                            <i class="mdi mdi-city menu-icon"></i>Data Kelas</a>
+                                    </li>
 
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="{{ route('kelas.index') }}">
-                                        <i class="mdi mdi-city menu-icon"></i>Data Kelas</a>
-                                </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="{{ route('mapel.index') }}">
+                                            <i class="mdi mdi-book-open menu-icon"></i> Data Mata Pelajaran</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="{{ route('jadwal.index') }}">
+                                            <i class="mdi mdi-alarm-check menu-icon"></i>Data Jadwal</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="{{ route('thn-akademik.index') }}">
+                                            <i class="mdi mdi-alarm menu-icon"></i>Data Tahun Akademik</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="{{ route('ekstrakulikuler.index') }}">
+                                            <i class="mdi mdi-football menu-icon"></i>Data Ekstrakulikuler
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('pengumuman.index') }}">
+                                <i class="mdi mdi-book-open menu-icon"></i>
+                                <span class="menu-title  fw-bold">Pengumuman</span>
+                            </a>
+                        </li>
 
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="{{ route('mapel.index') }}">
-                                        <i class="mdi mdi-book-open menu-icon"></i> Data Mata Pelajaran</a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="{{ route('jadwal.index') }}">
-                                        <i class="mdi mdi-alarm-check menu-icon"></i>Data Jadwal</a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="{{ route('thn-akademik.index') }}">
-                                        <i class="mdi mdi-alarm menu-icon"></i>Data Tahun Akademik</a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="{{ route('ekstrakulikuler.index') }}">
-                                        <i class="mdi mdi-football menu-icon"></i>Data Ekstrakulikuler
-                                    </a>
-                                </li>
-                            </ul>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pengumuman.index') }}">
-                            <i class="mdi mdi-book-open menu-icon"></i>
-                            <span class="menu-title  fw-bold">Pengumuman</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false"
-                            aria-controls="auth">
-                            <i class="mdi mdi-bank menu-icon"></i>
-                            <span class="menu-title  fw-bold">Pembayaran</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="auth">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="{{ route('jns-pembayaran.index') }}"><i
-                                            class="mdi mdi-note-text menu-icon"></i> Jenis
-                                        Pembayaran</a>
-                                </li>
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="{{ route('catat-pembayaran.index') }}"><i
-                                            class="mdi mdi-pencil-box-outline menu-icon"></i>Catat
-                                        Pembayaran</a>
-                                    </a></li>
-                            </ul>
-                        </div>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false"
+                                aria-controls="auth">
+                                <i class="mdi mdi-bank menu-icon"></i>
+                                <span class="menu-title  fw-bold">Pembayaran</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="auth">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a class="nav-link"
+                                            href="{{ route('jns-pembayaran.index') }}"><i
+                                                class="mdi mdi-note-text menu-icon"></i> Jenis
+                                            Pembayaran</a>
+                                    </li>
+                                    <li class="nav-item"> <a class="nav-link"
+                                            href="{{ route('catat-pembayaran.index') }}"><i
+                                                class="mdi mdi-pencil-box-outline menu-icon"></i>Catat
+                                            Pembayaran</a>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    @elseif(Auth::guard('siswa')->check())
+                    @endif
 
             </nav>
             <!-- partial -->

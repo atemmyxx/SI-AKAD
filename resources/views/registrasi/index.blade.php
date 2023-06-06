@@ -17,7 +17,16 @@
                 </div>
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 shadow p-4">
                     <h2 class="mb-1"><span style="color: lightslategray">Registrasi</span> </h2>
-                    <form action="/register" method="post">
+                    @if (Session::has('message'))
+                        <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert" style="display: flex;justify-content: space-between;padding-right: 10px;">
+                            {{ Session::get('message') }}
+                            <button type="button" class="close py-2 px-3" data-dismiss="alert" aria-label="Close">
+                                <span class="fa fa-times">X</span>
+                            </button>
+                        </div>
+                    @endif
+                    <form method="POST" action="{{ route('register') }}" class="" novalidate="">
+                    {{ csrf_field() }}
                         {{--   @csrf berfungsi untuk mengamankan form dari serangan --}}
                         @csrf
                         <label class="form-label fw-bolder mt-4" for="nama">Nama</label>
@@ -32,13 +41,24 @@
                                 </div>
                             @enderror
 
-                            <label class="form-label fw-bolder mt-4" for="username">Username</label>
                             <div class="form-outline mb-4">
+                                <label class="form-label fw-bolder mt-4" for="username">Username</label>
                                 <input type="username" id="username" name="username"
                                     class="form-control shadow-sm @error('username') is-invalid @enderror"
                                     placeholder="masukkan username" required autofocus value="{{ old('username') }}">
 
                                 @error('username')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+
+                                <label class="form-label fw-bolder mt-4" for="username">Email</label>
+                                <input type="email" id="email" name="email"
+                                    class="form-control shadow-sm @error('username') is-invalid @enderror"
+                                    placeholder="masukkan email" required autofocus value="{{ old('email') }}">
+
+                                @error('email')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -56,7 +76,7 @@
                                         </div>
                                     @enderror
 
-                                    <label class="form-label fw-bolder mt-4" for="conf_password">Confirm Password</label>
+                                    {{-- <label class="form-label fw-bolder mt-4" for="conf_password">Confirm Password</label>
                                     <div class="form-outline mb-4">
                                         <input type="conf_password" id="conf_password" name="conf_password"
                                             class="form-control shadow-sm @error('conf_password') is-invalid @enderror"
@@ -67,7 +87,8 @@
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
-                                        @enderror
+                                        @enderror --}}
+
                                         <div class="text-center pt-2 d-block justify-content-center mt-4">
                                             <button type="submit" class="btn btn-primary btn-md mb-4"
                                                 style="padding-left: 2.5rem; padding-right: 2.5rem;">Daftar</button>

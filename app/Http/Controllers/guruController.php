@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guru;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class guruController extends Controller
@@ -15,6 +16,7 @@ class guruController extends Controller
     public function index()
     {
         $guru = Guru::orderBy('nama_guru', 'desc')->get();
+        // $guru = User::where('role','2')->orderBy('created_at', 'desc')->get();
         return view('dashboardAdmin.guru.index')->with('guru', $guru);
     }
 
