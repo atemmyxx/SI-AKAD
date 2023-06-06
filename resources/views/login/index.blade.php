@@ -14,20 +14,21 @@
                 </div>
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 shadow p-4">
 
-                    {{--  penggunaan alert jika user berhasil registrasi --}}
+                     {{-- penggunaan alert jika user berhasil registrasi
                     @if (session()->has('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('success') }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
+                        </div> --}}
+                    {{-- @endif --}}
+
                     {{-- Notifikasi Jika gagal login --}}
-                    @if (session()->has('loginErrors'))
+                    {{-- @if (session()->has('loginErrors'))
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             {{ session('loginErrors') }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
-                    @endif
+                    @endif --}}
                     {{-- *********************************************** --}}
                     <h2><span style="color: lightslategray">Login</span> </h2>
                     <form action="/login" method="post">
@@ -59,7 +60,7 @@
                                     {{ $message }}
                                 </div>
                             @enderror
-                            <div class="form-group pt-3">
+                            {{-- <div class="form-group pt-3">
                                 <label for="exampleFormControlSelect1" class="fw-bold mb-2">Level</label>
                                 <select class="form-control" id="exampleFormControlSelect1">
                                     <option>Admin</option>
@@ -67,13 +68,13 @@
                                     <option>Siswa</option>
                                     <option>Walikelas</option>
                                 </select>
-                            </div>
+                            </div> --}}
                             <div class="text-center text-lg-start mt-4 pt-2">
                                 <button type="submit" class="btn btn-primary btn-md mb-4"
                                     style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
 
-                                <p class="small fw-bold mt-4 pt-1 mb-0">Nggak punya akun?
-                                    <a href="/registrasi" class="btn btn-success"> Daftar</a>
+                                {{-- <p class="small fw-bold mt-4 pt-1 mb-0">Nggak punya akun?
+                                    <a href="/registrasi" class="btn btn-success"> Daftar</a> --}}
                             </div>
                     </form>
                 </div>

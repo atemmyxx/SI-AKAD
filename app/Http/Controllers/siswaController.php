@@ -38,7 +38,7 @@ class siswaController extends Controller
     {
         $siswa = $request->validate([
             'username_siswa' => 'required|max:20',
-            'password' => 'required|max:8',
+            'password' => 'required|min:8',
             'nisn' => 'required|numeric',
             'nama' => 'required|max:255',
             'tempat_lahir' => 'required|max:255',
@@ -70,7 +70,8 @@ class siswaController extends Controller
      */
     public function show($id)
     {
-        //
+        $siswa = Siswa::where('id', $id)->first();
+        return view('dashboardAdmin.siswa.show')->with('siswa', $siswa);
     }
 
     /**
@@ -96,7 +97,7 @@ class siswaController extends Controller
     {
         $siswa = $request->validate([
             'username_siswa' => 'required|max:20',
-            'password' => 'required|max:8',
+            'password' => 'required|min:8',
             'nisn' => 'required|numeric',
             'nama' => 'required|max:255',
             'tempat_lahir' => 'required|max:255',

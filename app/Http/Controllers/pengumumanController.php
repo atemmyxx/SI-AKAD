@@ -61,7 +61,8 @@ class pengumumanController extends Controller
      */
     public function show($id)
     {
-        //
+        $pengumuman = Pengumuman::where('id', $id)->first();
+        return view('dashboardAdmin.pengumuman.show')->with('pengumuman', $pengumuman);
     }
 
     /**

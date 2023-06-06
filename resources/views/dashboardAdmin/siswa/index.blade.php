@@ -41,6 +41,11 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li>
+                                    <a href="{{ route('siswa.show', $student->id) }}"class=" mb-2 btn btn-sm btn-primary"><span
+                                            class="mdi  mdi-table-edit">Lihat</span></a>
+                                </li>
+
                                 <li><a href="{{ route('siswa.edit', $student->id) }}"class=" mb-2 btn btn-sm btn-warning"><span
                                             class="mdi  mdi-table-edit">Edit</span></a>
                                 </li>

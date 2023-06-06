@@ -63,7 +63,8 @@ class guruController extends Controller
      */
     public function show($id)
     {
-        //
+        $guru = Guru::where('id', $id)->first();
+        return view('dashboardAdmin.guru.show')->with('guru', $guru);
     }
 
     /**
