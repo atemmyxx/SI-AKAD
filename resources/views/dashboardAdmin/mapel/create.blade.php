@@ -2,12 +2,34 @@
 
 @section('content')
     <h3 class=" p-2 text-secondary"> Tambah Mata Pelajaran</h3>
+    @if (Session::has('message'))
+        <div class="alert alert-warning alert-dismissible fade show mb-3" role="alert">
+            {{ Session::get('message') }}
+            <button type="button" class="close py-2 px-3" data-dismiss="alert" aria-label="Close">
+                <span class="fa fa-times"></span>
+            </button>
+        </div>
+    @elseif(Session::has('messagesuccess'))
+        <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+            {{ Session::get('messagesuccess') }}
+            <button type="button" class="close py-2 px-3" data-dismiss="alert" aria-label="Close">
+                <span class="fa fa-times"></span>
+            </button>
+        </div>
+    @elseif(Session::has('messageduplicate'))
+        <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+            {{ Session::get('messageduplicate') }}
+            <button type="button" class="close py-2 px-3" data-dismiss="alert" aria-label="Close">
+                <span class="fa fa-times"></span>
+            </button>
+        </div>
+    @endif
     <div class="row">
         <div class="col-lg-8">
             <div class="m-3">
                 <form action="{{ route('mapel.store') }}" method="POST">
                     @csrf
-                    <div class="form-group mb-3">
+                    {{-- <div class="form-group mb-3">
                         <label for="kd_mapel" class="font-weight-bold">Kode Mata Pelajaran :</label>
                         <input type="text"
                             class="form-control border border-secondary @error('kd_mapel') is-invalid @enderror"
@@ -17,7 +39,7 @@
                                 {{ $message }}
                             </div>
                         @enderror
-                    </div>
+                    </div> --}}
 
                     <div class="form-group mb-3">
                         <label for="nm_mapel">Nama Mata Pelajaran :</label>

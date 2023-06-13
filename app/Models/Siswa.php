@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Siswa extends Authenticatable
 {
     use HasFactory;
-    protected $guarded = ['id'];
+    protected $guarded = ['siswa'];
     public function getAuthPassword()
     {
         return $this->password;

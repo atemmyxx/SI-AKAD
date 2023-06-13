@@ -13,8 +13,11 @@
                         <select class="form-select" aria-label="Default select example" name="thn_akademik"
                             value="{{ old('thn_akademik', $kelas->thn_akademik) }}" required>
                             <option selected disabled>Pilih</option>
-                            <option>2022-2023</option>
-                            <option>2023-2024</option>
+                            {{-- <option>2022-2023</option>
+                            <option>2023-2024</option> --}}
+                            @foreach (json_decode(getTahunAkademik()) as $item)
+                            <option value="{{ $item->id }}" @if($kelas->thn_akademik == $item->id) selected @endif>{{ $item->thn_akademik }} {{ $item->semester }}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -37,7 +40,9 @@
                         <select class="form-select" aria-label="Default select example" name="nm_walikelas"
                             value="{{ old('nm_walikelas', $kelas->nm_walikelas) }}" required>>
                             <option selected disabled>Pilih</option>
-                            <option>Asep</option>
+                            @foreach (json_decode(getDataGuru('1')) as $item)
+                                <option @if($kelas->nm_walikelas == $item->nama_guru) selected @endif>{{ $item->nama_guru }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col lg-6">

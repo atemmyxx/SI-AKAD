@@ -27,7 +27,7 @@
                 @foreach ($kelas as $kls)
                     <tr>
                         <td>{{ $i }}</td>
-                        <td>{{ $kls->thn_akademik }}</td>
+                        <td>{{ getTahunAkademikByID($kls->thn_akademik)[0]->thn_akademik }} {{ getTahunAkademikByID($kls->thn_akademik)[0]->semester }}</td>
                         <td>{{ $kls->nm_kelas }}</td>
                         <td>{{ $kls->nm_walikelas }}</td>
                         <td>

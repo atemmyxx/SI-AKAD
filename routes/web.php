@@ -11,6 +11,7 @@ use App\Http\Controllers\kelasController;
 use App\Http\Controllers\Logincontroller;
 use App\Http\Controllers\mapelController;
 use App\Http\Controllers\ortuController;
+use App\Http\Controllers\OrtuhomeController;
 use App\Http\Controllers\pengumumanController;
 use App\Http\Controllers\Registrasicontroller;
 use App\Http\Controllers\siswaController;
@@ -33,14 +34,24 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('landingPage/welcome');
 });
+Route::get('/oldhome', function () {
+    return view('landingPage/welcomeOld');
+});
 
-// login
+// login Admin
 Route::get('/admin/login', [Logincontroller::class, 'admin_index']);
 Route::post('/admin/login', [Logincontroller::class, 'admin_login'])->name('admin_login');
-// Siswa
+// login Guru
+Route::get('/guru/login', [Logincontroller::class, 'guru_index']);
+Route::post('/guru/login', [Logincontroller::class, 'guru_login'])->name('guru_login');
+// login Siswa
 Route::get('/login', [Logincontroller::class, 'index']);
 Route::post('/login', [Logincontroller::class, 'login'])->name('login');
 Route::post('register', [Logincontroller::class, 'register'])->name('register');
+// login orang tua
+Route::get('/orangtua/login', [Logincontroller::class, 'orangtua_index']);
+Route::post('/orangtua/login', [Logincontroller::class, 'orangtua_login'])->name('orangtua_login');
+
 Route::get('/logout', [Logincontroller::class, 'logout']);
 
 // registrasi
@@ -87,6 +98,22 @@ Route::group(['middleware' => 'auth:siswa'], function () {
         function () {
             // Route::get('dashboard', [homeController::class, 'index'])->name('admin.dashboard');
             Route::resource('dashboard', SiswahomeController::class);
+        }
+    );
+});
+Route::group(['middleware' => 'auth:guru'], function () {
+    // Route::prefix('guru')->group(
+    //     function () {
+    //         // Route::get('dashboard', [homeController::class, 'index'])->name('admin.dashboard');
+    //         Route::resource('dashboard', guruController::class);
+    //     }
+    // );
+    Route::get('guru/dashboard', [guruController::class, 'dashboard'])->name('guru.dashboard');
+});
+Route::group(['middleware' => 'auth:orangtua'], function () {
+    Route::prefix('orangtua')->group(
+        function () {
+            Route::resource('dashboard', OrtuhomeController::class);
         }
     );
 });

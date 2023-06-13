@@ -27,6 +27,7 @@
             display: none;
         }
     </style>
+    @stack('css')
 </head>
 
 <body>
@@ -54,6 +55,10 @@
                             <span class="nav-profile-name">{{ Auth::user()->name }}</span>
                             @elseif (Auth::guard('siswa')->check())
                             <span class="nav-profile-name">{{ Auth::user()->nama }}</span>
+                            @elseif (Auth::guard('guru')->check())
+                            <span class="nav-profile-name">{{ Auth::user()->nama_guru }}</span>
+                            @elseif (Auth::guard('orangtua')->check())
+                            <span class="nav-profile-name">Wali Murid</span>
                             @endif
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -77,16 +82,25 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
+                        @if (Auth::guard('web')->check())
                         <span class="menu-title m-3 fw-bold fs-5" style="color: gray">Admin</span>
+                        @elseif (Auth::guard('siswa')->check())
+                        <span class="menu-title m-3 fw-bold fs-5" style="color: gray">Siswa</span>
+                        @elseif (Auth::guard('guru')->check())
+                        <span class="menu-title m-3 fw-bold fs-5" style="color: gray">Guru</span>
+                        @elseif (Auth::guard('orangtua')->check())
+                        <span class="menu-title m-3 fw-bold fs-5" style="color: gray">Wali Murid</span>
+                        @endif
                     </li>
+                    {{-- <h1>{{ Auth::guard('siswa')->check() }}</h1> --}}
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home.index') }}">
-                            <i class="mdi mdi-home menu-icon"></i>
-                            <span class="menu-title fw-bold">Home</span>
-                        </a>
-                    </li>
                     @if (Auth::guard('web')->check())
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home.index') }}">
+                                <i class="mdi mdi-home menu-icon"></i>
+                                <span class="menu-title fw-bold">Home</span>
+                            </a>
+                        </li>
                         <li class="nav-item ">
                             <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
                                 aria-controls="ui-basic">
@@ -168,6 +182,12 @@
                             </div>
                         </li>
                     @elseif(Auth::guard('siswa')->check())
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('dashboard.index') }}">
+                            <i class="mdi mdi-home menu-icon"></i>
+                            <span class="menu-title fw-bold">Home</span>
+                        </a>
+                    </li>
                     @endif
 
             </nav>
@@ -224,6 +244,7 @@
     <!-- End custom js for this page-->
 
     <script src="{{ asset('admin') }}/js/jquery.cookie.js" type="text/javascript"></script>
+    @stack('js')
 </body>
 
 </html>

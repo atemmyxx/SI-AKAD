@@ -2,12 +2,35 @@
 
 @section('content')
     <h3 class=" p-2 text-secondary"> Edit Data Guru</h3>
+    @if (Session::has('message'))
+        <div class="alert alert-warning alert-dismissible fade show mb-3" role="alert">
+            {{ Session::get('message') }}
+            <button type="button" class="close py-2 px-3" data-dismiss="alert" aria-label="Close">
+                <span class="fa fa-times"></span>
+            </button>
+        </div>
+    @elseif(Session::has('messagesuccess'))
+        <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+            {{ Session::get('messagesuccess') }}
+            <button type="button" class="close py-2 px-3" data-dismiss="alert" aria-label="Close">
+                <span class="fa fa-times"></span>
+            </button>
+        </div>
+    @elseif(Session::has('messageduplicate'))
+        <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+            {{ Session::get('messageduplicate') }}
+            <button type="button" class="close py-2 px-3" data-dismiss="alert" aria-label="Close">
+                <span class="fa fa-times"></span>
+            </button>
+        </div>
+    @endif
     <div class="row">
         <div class="col-lg-8">
             <div class="m-3">
                 <form action="{{ route('guru.update', $guru->id) }}" method="POST">
                     @csrf
                     @method('put')
+                    <input type="hidden" name="id" value="{{ $guru->id }}">
                     <div class="form-group mb-3">
                         <label for="username_guru" class="font-weight-bold">Username :</label>
                         <input type="text"
@@ -24,13 +47,14 @@
                         <label for="password">Password :</label>
                         <input type="password"
                             class="form-control border border-secondary @error('password') is-invalid @enderror"
-                            id="password" placeholder="name@example.com" name="password"
-                            value="{{ old('password', $guru->password) }}" required>
+                            id="password" placeholder="Kosongkan jika tidak ingin mengubah password" name="password"
+                            value="">
                         @error('password')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
+                        <input type="hidden" name="old_password" value="{{ $guru->password }}">
                     </div>
 
                     <div class="form-group mb-3">
@@ -93,9 +117,9 @@
                                     {{ $message }}
                                 </div>
                             @enderror
-                            <option selected disabled>Pilih</option>
-                            <option>Laki-Laki</option>
-                            <option>Perempuan</option>
+                            {{-- <option selected disabled>Pilih</option> --}}
+                            <option @if($guru->jns_kelamin_guru == 'Laki-Laki') selected @endif>Laki-Laki</option>
+                            <option @if($guru->jns_kelamin_guru == 'Perempuan') selected @endif>Perempuan</option>
                         </select>
                     </div>
 
@@ -109,13 +133,13 @@
                                     {{ $message }}
                                 </div>
                             @enderror
-                            <option selected disabled>Pilih</option>
-                            <option>SMA / Sederajat</option>
-                            <option> Diploma 3 (D3) </option>
-                            <option> Diploma 4 (D4) </option>
-                            <option> Strata 1 (S1) </option>
-                            <option> Strata 2 (S2) </option>
-                            <option> Strata 3 (S3) </option>
+                            {{-- <option selected disabled>Pilih</option> --}}
+                            <option @if($guru->pendidikan_terakhir_guru == 'SMA / Sederajat') selected @endif>SMA / Sederajat</option>
+                            <option @if($guru->pendidikan_terakhir_guru == 'Diploma 3 (D3)') selected @endif>Diploma 3 (D3)</option>
+                            <option @if($guru->pendidikan_terakhir_guru == 'Diploma 4 (D4)') selected @endif>Diploma 4 (D4)</option>
+                            <option @if($guru->pendidikan_terakhir_guru == 'Strata 1 (S1)') selected @endif>Strata 1 (S1)</option>
+                            <option @if($guru->pendidikan_terakhir_guru == 'Strata 2 (S2)') selected @endif>Strata 2 (S2)</option>
+                            <option @if($guru->pendidikan_terakhir_guru == 'Strata 3 (S3)') selected @endif>Strata 3 (S3)</option>
                         </select>
                     </div>
 
@@ -143,6 +167,22 @@
                                 {{ $message }}
                             </div>
                         @enderror
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="active">Active :</label>
+                        <select class="form-select @error('active') is-invalid @enderror"
+                            aria-label="Default select example" name="active"
+                            value="{{ old('active') }}">
+                            @error('active')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            {{-- <option selected disabled>Pilih</option> --}}
+                            <option value="1" @if($guru->active == '1') selected @endif>Active</option>
+                            <option value="0" @if($guru->active == '0') selected @endif>Tidak Active</option>
+                        </select>
                     </div>
                     <div class="col lg-6">
                         <button class="btn btn-success m-2" name="simpan" type="submit">Simpan</button>

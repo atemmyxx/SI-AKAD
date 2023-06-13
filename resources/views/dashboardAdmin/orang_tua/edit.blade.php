@@ -36,7 +36,7 @@
 
                     <div class="form-group mb-3">
                         <label for="nama_siswa" class="form-label">Nama siswa :</label>
-                        <select class="form-select @error('nama_siswa') is-invalid @enderror"
+                        {{-- <select class="form-select @error('nama_siswa') is-invalid @enderror"
                             aria-label="Default select example" name="nama_siswa"
                             value="{{ old('nama_siswa', $orangtua->nama_siswa) }}" required>
                             @error('nama_siswa')
@@ -46,7 +46,8 @@
                             @enderror
                             <option selected disabled>Pilih</option>
                             <option>Arkan Alhady</option>
-                        </select>
+                        </select> --}}
+                        <input type="text" class="form-control border border-secondary" value="{{ getSiswaByKodeOrtu($orangtua->username_ortu) }}" readonly>
                     </div>
 
                     <div class="form-group mb-3">

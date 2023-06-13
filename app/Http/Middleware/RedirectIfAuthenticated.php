@@ -22,6 +22,28 @@ class RedirectIfAuthenticated
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
+
+            if ($guard == "web" && Auth::guard($guard)->check()) {
+                return redirect('/admin/dashboard');
+            } else {
+                return redirect('/admin/login');
+            }
+            if ($guard == "siswa" && Auth::guard($guard)->check()) {
+                return redirect('/siswa/dashboard');
+            } else {
+                return redirect('/login');
+            }
+            if ($guard == "guru" && Auth::guard($guard)->check()) {
+                return redirect('/guru/dashboard');
+            } else {
+                return redirect('/guru/login');
+            }
+            if ($guard == "orangtua" && Auth::guard($guard)->check()) {
+                return redirect('/orangtua/dashboard');
+            } else {
+                return redirect('/orangtua/login');
+            }
+
             if (Auth::guard($guard)->check()) {
                 return redirect(RouteServiceProvider::HOME);
             }

@@ -1,6 +1,28 @@
 @extends('dashboardAdmin.layout')
 
 @section('content')
+@if (Session::has('message'))
+    <div class="alert alert-warning alert-dismissible fade show mb-3" role="alert">
+        {{ Session::get('message') }}
+        <button type="button" class="close py-2 px-3" data-dismiss="alert" aria-label="Close">
+            <span class="fa fa-times"></span>
+        </button>
+    </div>
+@elseif(Session::has('messagesuccess'))
+    <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+        {{ Session::get('messagesuccess') }}
+        <button type="button" class="close py-2 px-3" data-dismiss="alert" aria-label="Close">
+            <span class="fa fa-times"></span>
+        </button>
+    </div>
+@elseif(Session::has('messageduplicate'))
+    <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+        {{ Session::get('messageduplicate') }}
+        <button type="button" class="close py-2 px-3" data-dismiss="alert" aria-label="Close">
+            <span class="fa fa-times"></span>
+        </button>
+    </div>
+@endif
     <h3 class=" p-2 text-secondary">Data Mata Pelajaran</h3>
 
     @if (session()->has('success'))
@@ -37,7 +59,7 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a href="{{ route('mapel.edit', $mapels->id) }}"class=" mb-2 btn btn-sm btn-warning"><span
                                             class="mdi  mdi-table-edit">Edit</span></a>
-                                </li> 
+                                </li>
                                 <form onsubmit="return confirm('Yakin mau hapus data ini?')"
                                     action="{{ route('mapel.destroy', $mapels->id) }}" method="POST">
                                     @csrf

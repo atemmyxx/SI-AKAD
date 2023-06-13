@@ -21,7 +21,11 @@
                             aria-label="Default select example" name="hari_ekskul"
                             value="{{ old('hari_ekskul', $ekstrakulikuler->hari_ekskul) }}" required>
                             <option selected disabled>Pilih</option>
-                            <option>Senin</option>
+                            <option @if($ekstrakulikuler->hari_ekskul == 'Senin') selected @endif>Senin</option>
+                            <option @if($ekstrakulikuler->hari_ekskul == 'Selasa') selected @endif>Selasa</option>
+                            <option @if($ekstrakulikuler->hari_ekskul == 'Rabu') selected @endif>Rabu</option>
+                            <option @if($ekstrakulikuler->hari_ekskul == 'Kamis') selected @endif>Kamis</option>
+                            <option @if($ekstrakulikuler->hari_ekskul == 'Jumat') selected @endif>Jumat</option>
                         </select>
                     </div>
                     <div class="form-group mb-3">

@@ -2,6 +2,28 @@
 
 @section('content')
     <h3 class=" p-2 text-secondary"> Tambah Data Guru</h3>
+    @if (Session::has('message'))
+        <div class="alert alert-warning alert-dismissible fade show mb-3" role="alert">
+            {{ Session::get('message') }}
+            <button type="button" class="close py-2 px-3" data-dismiss="alert" aria-label="Close">
+                <span class="fa fa-times"></span>
+            </button>
+        </div>
+    @elseif(Session::has('messagesuccess'))
+        <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+            {{ Session::get('messagesuccess') }}
+            <button type="button" class="close py-2 px-3" data-dismiss="alert" aria-label="Close">
+                <span class="fa fa-times"></span>
+            </button>
+        </div>
+    @elseif(Session::has('messageduplicate'))
+        <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+            {{ Session::get('messageduplicate') }}
+            <button type="button" class="close py-2 px-3" data-dismiss="alert" aria-label="Close">
+                <span class="fa fa-times"></span>
+            </button>
+        </div>
+    @endif
     <div class="row">
         <div class="col-lg-8">
             <div class="m-3">
@@ -11,7 +33,7 @@
                         <label for="username_guru" class="font-weight-bold">Username :</label>
                         <input type="text"
                             class="form-control border border-secondary @error('username_guru') is-invalid @enderror"
-                            id="username_guru" placeholder="name@example.com" name="username_guru"
+                            id="username_guru" placeholder="username" name="username_guru"
                             value="{{ old('username_guru') }}">
                         @error('username_guru')
                             <div class="invalid-feedback">
@@ -23,7 +45,7 @@
                         <label for="password">Password :</label>
                         <input type="password"
                             class="form-control border border-secondary @error('password') is-invalid @enderror"
-                            id="password" placeholder="name@example.com" name="password" value="{{ old('password') }}">
+                            id="password" placeholder="password" name="password" value="{{ old('password') }}">
                         @error('password')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -139,6 +161,22 @@
                                 {{ $message }}
                             </div>
                         @enderror
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="alamat_guru">Active :</label>
+                        <select class="form-select @error('active') is-invalid @enderror"
+                            aria-label="Default select example" name="active"
+                            value="{{ old('active') }}">
+                            @error('active')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            {{-- <option selected disabled>Pilih</option> --}}
+                            <option selected value="1">Active</option>
+                            <option value="0">Tidak Active</option>
+                        </select>
                     </div>
                     <div class="col lg-6">
                         <button class="btn btn-success m-2" name="simpan" type="submit">Simpan</button>

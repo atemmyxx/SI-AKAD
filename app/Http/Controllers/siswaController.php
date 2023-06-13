@@ -93,7 +93,7 @@ class siswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateOld(Request $request, $id)
     {
         $siswa = $request->validate([
             'username_siswa' => 'required|max:20',
@@ -119,6 +119,59 @@ class siswaController extends Controller
 
         Siswa::where('id', $id)->update($siswa);
         return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil diedit');
+    }
+    public function update(Request $request, $id)
+    {
+        try {
+            // Check if email exist in db
+            $username_siswaexist = Siswa::
+            where('username_siswa', '=', $request->username_siswa)
+            ->first();
+
+            if ($username_siswaexist) {
+                Session::flash('messageduplicate', "Username sudah terdaftar !");
+                return redirect()->back();
+            }
+            if($request->password != null){
+                $password_value = bcrypt($request->password);
+            }else{
+                $password_value = $request->old_password;
+            }
+            // dd($password_value);
+            $saveorno = Siswa::where('id',$request->id)->update([
+                'username_siswa' => $request->username_siswa,
+                'password' => $password_value,
+                'nama' => $request->nama,
+                'nisn' => $request->nisn,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tgl_lahir' => $request->tgl_lahir,
+                'kelas' => $request->kelas,
+                'walikelas' => $request->walikelas,
+                'ekskul_siswa' => $request->ekskul_siswa,
+                'jns_kelamin' => $request->jns_kelamin,
+                'nohp_siswa' => $request->nohp_siswa,
+                'nama_ayah' => $request->nama_ayah,
+                'nama_ibu' => $request->nama_ibu,
+                'nohp_ortu' => $request->nohp_ortu,
+                'alamat' => $request->alamat,
+                'nama_wali' => $request->nama_wali,
+                'active' => $request->active,
+            ]);
+            // dd($saveorno);
+            if($saveorno > 0){
+                Session::flash('messagesuccess', "Data has been saved successfully.");
+                return redirect()->route('siswa.index');
+            }
+            else
+            {
+                Session::flash('message', "No changes have been made in the form fields.");
+                return redirect()->back();
+            }
+        } catch (\Illuminate\Database\QueryException $ex) {
+            Session::flash('message', "Data failed to save.");
+            // return redirect('admin/users');
+            return redirect()->back();
+        }
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
+use App\Models\OrangTua;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,23 +16,47 @@ use Redirect;
 
 class Logincontroller extends Controller
 {
+
+    public function __construct(){
+        // $this->middleware('auth:siswa')->except('logout');
+
+    }
+
     public function index()
     {
-        if (Auth::check()) {
-            //Login Success
-            // return redirect('admin/dashboard');
-            return redirect('admin/dashboard');
-        }
+        if(Auth::guard('web')->check()){return redirect('/admin/dashboard');}
+        if(Auth::guard('siswa')->check()){return redirect('siswa/dashboard');}
+        if(Auth::guard('guru')->check()){return redirect('/guru/dashboard');}
+        if(Auth::guard('orangtua')->check()){return redirect('/orangtua/dashboard');}
+
         return view('login.index');
     }
     public function admin_index()
     {
-        if (Auth::check()) {
-            //Login Success
-            // return redirect('admin/dashboard');
-            return redirect('admin/dashboard');
-        }
+        if(Auth::guard('web')->check()){return redirect('/admin/dashboard');}
+        if(Auth::guard('siswa')->check()){return redirect('siswa/dashboard');}
+        if(Auth::guard('guru')->check()){return redirect('/guru/dashboard');}
+        if(Auth::guard('orangtua')->check()){return redirect('/orangtua/dashboard');}
+
         return view('login.admin_index');
+    }
+    public function guru_index()
+    {
+        if(Auth::guard('web')->check()){return redirect('/admin/dashboard');}
+        if(Auth::guard('siswa')->check()){return redirect('siswa/dashboard');}
+        if(Auth::guard('guru')->check()){return redirect('/guru/dashboard');}
+        if(Auth::guard('orangtua')->check()){return redirect('/orangtua/dashboard');}
+
+        return view('login.guru_index');
+    }
+    public function orangtua_index()
+    {
+        if(Auth::guard('web')->check()){return redirect('/admin/dashboard');}
+        if(Auth::guard('siswa')->check()){return redirect('siswa/dashboard');}
+        if(Auth::guard('guru')->check()){return redirect('/guru/dashboard');}
+        if(Auth::guard('orangtua')->check()){return redirect('/orangtua/dashboard');}
+
+        return view('login.orangtua_index');
     }
 
     public function admin_login(Request $request)
@@ -90,7 +116,7 @@ class Logincontroller extends Controller
         else {
             //Login Fail
             Session::flash('message', 'Salah Email atau password salah');
-            return redirect()->route('login');
+            return redirect('admin/login');
         }
 
         if (Auth::check()) {
@@ -113,6 +139,77 @@ class Logincontroller extends Controller
         }
 
     }
+    public function guru_login(Request $request)
+    {
+        // dd('est');
+        $user = Guru::where('username_guru', $request->username)->first();
+        // dd($user);
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            Session::flash('message', "Incorrect Username or Password.");
+            return Redirect::back();
+        }else{
+            // Auth::attempt($data)
+            // Auth::guard('siswa');
+
+            $data = [
+                'username_guru' => $request->input('username'),
+                'password'  => $request->input('password'),
+            ];
+            // if(Auth::guard('siswa')->attempt($request->only(['username', 'password'])))
+            if(Auth::guard('guru')->attempt($data))
+            {
+                return redirect('guru/dashboard');
+
+                // if(Auth::guard('web')->check()){
+                //     dd("web");
+                // }
+                // elseif(Auth::guard('guru')->check()){
+                //     dd("guru");
+                // }
+            }else {
+                Session::flash('message', "Incorrect Username or Password.");
+                return Redirect::back();
+            }
+        }
+
+    }
+    public function orangtua_login(Request $request)
+    {
+        // dd('est');
+        $user = OrangTua::where('username_ortu', $request->username)->first();
+        // dd($user);
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            Session::flash('message', "Incorrect Username or Password.");
+            return Redirect::back();
+        }else{
+            // Auth::attempt($data)
+            // Auth::guard('siswa');
+
+            $data = [
+                'username_ortu' => $request->input('username'),
+                'password'  => $request->input('password'),
+            ];
+            // if(Auth::guard('siswa')->attempt($request->only(['username', 'password'])))
+            if(Auth::guard('orangtua')->attempt($data))
+            {
+                return redirect('orangtua/dashboard');
+
+                // if(Auth::guard('web')->check()){
+                //     dd("web");
+                // }
+                // elseif(Auth::guard('orangtua')->check()){
+                //     dd("orangtua");
+                // }
+            }else {
+                Session::flash('message', "Incorrect Username or Password.");
+                return Redirect::back();
+            }
+        }
+
+    }
+
     public function login(Request $request)
     {
         // dd('est');
@@ -120,7 +217,7 @@ class Logincontroller extends Controller
         // dd($user);
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            Session::flash('message', "Incorrect Email or Password.");
+            Session::flash('message', "Incorrect Username or Password.");
             return Redirect::back();
         }else{
             // Auth::attempt($data)
@@ -137,21 +234,21 @@ class Logincontroller extends Controller
                 // return redirect('fqwqfgegqwewg');
                 // dd(Auth::guard('siswa')->user());
 
-                if(Auth::guard('web')->check()){
-                    dd("web");
-                }
-                elseif(Auth::guard('siswa')->check()){
-                    dd("siswa");
-                }
+                // if(Auth::guard('web')->check()){
+                //     dd("web");
+                // }
+                // elseif(Auth::guard('siswa')->check()){
+                //     dd("siswa");
+                // }
             }else {
-                Session::flash('message', "Incorrect Email or Password.");
+                Session::flash('message', "Incorrect Username or Password.");
                 return Redirect::back();
             }
         }
 
     }
 
-    public function register(Request $request)
+    public function registerOld(Request $request)
     {
         $requestLogin = [
             'username'     => $request->input('username'),
@@ -202,10 +299,121 @@ class Logincontroller extends Controller
             return redirect()->route('register');
         }
     }
+    public function register(Request $request)
+    {
+        // $id_nisn_siswa = date("Y").date("m").str_pad(3, 2, "0", STR_PAD_LEFT);
+        // dd($id_nisn_siswa);
+
+        try {
+            // Check if email exist in db
+            $usernameexist = Siswa::
+            where('username_siswa', '=', $request->username_siswa)
+            ->first();
+
+            if ($usernameexist) {
+                Session::flash('messageduplicate', "Username sudah terdaftar !");
+                return redirect()->back();
+            }
+            // $emailexist = Siswa::
+            // where('email', '=', $request->email)
+            // ->first();
+
+            // if ($emailexist) {
+            //     Session::flash('messageduplicate', "Email sudah terdaftar !");
+            //     return redirect()->back();
+            // }
+            // $kodeRand = sprintf("%04d", mt_rand(1, 999999));
+            $latestOrder = Siswa::orderBy('created_at','DESC')->first();
+            $siswaCount = Siswa::count();
+            $idsiswanisn = $siswaCount+1;
+            if ($latestOrder != null){
+                $kodeRand = date("Y").date("m").sprintf("%04d", mt_rand(1, 99)).str_pad($idsiswanisn, 1, "0", STR_PAD_LEFT);
+            } else {
+                $kodeRand = date("Y").date("m").sprintf("%04d", mt_rand(1, 99)).str_pad($idsiswanisn, 1, "0", STR_PAD_LEFT);
+            }
+            $kodeRandexist = Siswa::
+            where('kode_ortu', '=', $kodeRand)
+            ->first();
+
+            if ($kodeRandexist) {
+                Session::flash('messageduplicate', "Terdapat kesalahan, silahkan coba kemabli.");
+                return redirect()->back();
+            }
+            else {
+
+                // dd($id_nisn_siswa);
+
+                $saveorno = Siswa::create([
+                    // 'nisn' => $id_nisn_siswa,
+                    'username_siswa' => $request->username_siswa,
+                    'password' => bcrypt($request->password),
+                    'nama' => $request->nama,
+                    'tempat_lahir' => $request->tempat_lahir,
+                    'tgl_lahir' => $request->tgl_lahir,
+                    'jns_kelamin' => $request->jns_kelamin,
+                    // 'nohp_siswa' => $request->nohp_siswa,
+                    // 'nama_ayah' => $request->nama_ayah,
+                    // 'nama_ibu' => $request->nama_ibu,
+                    'nohp_ortu' => $request->nohp_ortu,
+                    'alamat' => $request->alamat,
+                    'kode_ortu' => $kodeRand,
+                    'active' => '0',
+                    // 'active' => $request->active,
+                ]);
+
+                if($saveorno){
+                    $saveornoOrtu = OrangTua::create([
+                        'username_ortu' => $kodeRand,
+                        'password' => '$2y$10$q9wJQ7k6MpiHrpjjX/.ka.Ia2UFMy0w7Ad6t/TFTQZgjcjMkOzhru',
+                        'nama_siswa' => $request->nama,
+                    ]);
+                    if($saveornoOrtu){
+                        Session::flash('messagesuccess', "Anda berhasil daftar.");
+                        return redirect()->route('login');
+                    }else{
+                        Siswa::where('kode_ortu',$kodeRand)->delete();
+                        Session::flash('message', "Data failed to save.");
+                        return redirect()->back();
+                    }
+                }else{
+                    Session::flash('message', "Data failed to save.");
+                    return redirect()->back();
+                }
+            }
+
+        } catch (\Illuminate\Database\QueryException $ex) {
+            Session::flash('message', "Data failed to save.");
+            // return redirect('admin/users');
+            return redirect()->back();
+        }
+
+    }
 
     public function logout()
     {
-        Auth::logout();
-        return redirect('/login');
+        // Auth::logout();
+        // Auth::guard('siswa')->logout();
+        // Auth::guard('guru')->logout();
+        // Auth::guard('orangtua')->logout();
+        if(Auth::guard('web')->check())
+        {
+            Auth::guard('web')->logout();
+            return redirect('/admin/login');
+        }
+        if(Auth::guard('siswa')->check())
+        {
+            Auth::guard('siswa')->logout();
+            return redirect('/login');
+        }
+        if(Auth::guard('guru')->check())
+        {
+            Auth::guard('guru')->logout();
+            return redirect('/guru/login');
+        }
+        if(Auth::guard('orangtua')->check())
+        {
+            Auth::guard('orangtua')->logout();
+            return redirect('/orangtua/login');
+        }
     }
 }

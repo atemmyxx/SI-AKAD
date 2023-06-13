@@ -32,10 +32,24 @@
                     {{-- *********************************************** --}}
                     <h2><span style="color: lightslategray">Login</span> </h2>
                     @if (Session::has('message'))
-                        <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert" style="display: flex;justify-content: space-between;padding-right: 10px;">
+                        <div class="alert alert-warning alert-dismissible fade show mb-3" role="alert">
                             {{ Session::get('message') }}
                             <button type="button" class="close py-2 px-3" data-dismiss="alert" aria-label="Close">
-                                <span class="fa fa-times">X</span>
+                                <span class="fa fa-times"></span>
+                            </button>
+                        </div>
+                    @elseif(Session::has('messagesuccess'))
+                        <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+                            {{ Session::get('messagesuccess') }}
+                            <button type="button" class="close py-2 px-3" data-dismiss="alert" aria-label="Close">
+                                <span class="fa fa-times"></span>
+                            </button>
+                        </div>
+                    @elseif(Session::has('messageduplicate'))
+                        <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+                            {{ Session::get('messageduplicate') }}
+                            <button type="button" class="close py-2 px-3" data-dismiss="alert" aria-label="Close">
+                                <span class="fa fa-times"></span>
                             </button>
                         </div>
                     @endif

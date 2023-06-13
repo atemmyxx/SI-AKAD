@@ -20,6 +20,10 @@
                             aria-label="Default select example" name="hari_ekskul" value="{{ old('hari_ekskul') }}">
                             <option selected disabled>Pilih</option>
                             <option>Senin</option>
+                            <option>Selasa</option>
+                            <option>Rabu</option>
+                            <option>Kamis</option>
+                            <option>Jumat</option>
                         </select>
                     </div>
                     <div class="form-group mb-3">

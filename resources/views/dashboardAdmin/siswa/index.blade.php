@@ -1,7 +1,7 @@
 @extends('dashboardAdmin.layout')
 
 @section('content')
-    <h3 class=" p-2 text-secondary">Data Siswa</h3>
+    <h3 class=" p-2 text-secondary">Data Siswa d</h3>
 
     @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show col-lg-4" role="alert">
@@ -16,6 +16,7 @@
             <thead>
                 <tr class="table-primary">
                     <th scope="col">No</th>
+                    <th scope="col">Aktif</th>
                     <th scope="col">NISN</th>
                     <th scope="col">Nama</th>
                     <th scope="col">Kelas</th>
@@ -30,6 +31,11 @@
                 @foreach ($siswa as $student)
                     <tr>
                         <td>{{ $i }}</td>
+                        <td>@if ($student->active == 0)
+                            <p class="text-danger">Tidak Aktif</p>
+                            @else
+                            <p class="text-success">Aktif</p>
+                        @endif</td>
                         <td>{{ $student->nisn }}</td>
                         <td>{{ $student->nama }}</td>
                         <td>{{ $student->kelas }}</td>

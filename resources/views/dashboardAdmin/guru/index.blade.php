@@ -1,6 +1,29 @@
 @extends('dashboardAdmin.layout')
 
 @section('content')
+
+    @if (Session::has('message'))
+    <div class="alert alert-warning alert-dismissible fade show mb-3" role="alert">
+        {{ Session::get('message') }}
+        <button type="button" class="close py-2 px-3" data-dismiss="alert" aria-label="Close">
+            <span class="fa fa-times"></span>
+        </button>
+    </div>
+    @elseif(Session::has('messagesuccess'))
+    <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+        {{ Session::get('messagesuccess') }}
+        <button type="button" class="close py-2 px-3" data-dismiss="alert" aria-label="Close">
+            <span class="fa fa-times"></span>
+        </button>
+    </div>
+    @elseif(Session::has('messageduplicate'))
+    <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+        {{ Session::get('messageduplicate') }}
+        <button type="button" class="close py-2 px-3" data-dismiss="alert" aria-label="Close">
+            <span class="fa fa-times"></span>
+        </button>
+    </div>
+    @endif
     <h3 class=" p-2 text-secondary">Data Guru</h3>
     <div class="table-responsive">
         <a href="{{ route('guru.create') }}" class="btn btn-primary m-2"><span class="mdi mdi-plus"></span>Tambah Guru</a>

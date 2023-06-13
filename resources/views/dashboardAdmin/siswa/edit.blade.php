@@ -8,12 +8,13 @@
                 <form action="{{ route('siswa.update', $siswa->id) }}" method="POST">
                     @csrf
                     @method('put')
+                    <input type="hidden" name="id" value="{{ $siswa->id }}">
                     <h5 class=" ml-2 text-secondary"> Data Pribadi</h5>
                     <div class="form-group mb-3">
                         <label for="username_siswa" class="font-weight-bold">Username Siswa :</label>
                         <input type="text"
                             class="form-control border border-secondary @error('username_siswa') is-invalid @enderror"
-                            id="username_siswa" placeholder="name@example.com" name="username_siswa"
+                            id="username_siswa" placeholder="Input value" name="username_siswa"
                             value="{{ old('username_siswa', $siswa->username_siswa) }}" required>
                         @error('username_siswa')
                             <div class="invalid-feedback">
@@ -25,20 +26,21 @@
                         <label for="password">Password :</label>
                         <input type="password"
                             class="form-control border border-secondary @error('password') is-invalid @enderror"
-                            id="password" placeholder="name@example.com" name="password"
-                            value="{{ old('password', $siswa->password) }}" required>
+                            id="password" placeholder="Kosongkan jika tidak ingin mengubah password" name="password"
+                            value="">
                         @error('password')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
+                        <input type="hidden" name="old_password" value="{{ $siswa->password }}">
                     </div>
 
                     <div class="form-group mb-3">
                         <label for="nisn">NISN :</label>
                         <input type="number"
                             class="form-control border border-secondary @error('nisn') is-invalid @enderror" id="nisn"
-                            placeholder="name@example.com" name="nisn" value="{{ old('nisn', $siswa->nisn) }}" required>
+                            placeholder="Input value" name="nisn" value="{{ old('nisn', $siswa->nisn) }}" required>
                         @error('nisn')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -49,7 +51,7 @@
                         <label for="nama">Nama :</label>
                         <input type="text"
                             class="form-control border border-secondary @error('nama') is-invalid @enderror" id="nama"
-                            placeholder="name@example.com" name="nama" value="{{ old('nama', $siswa->nama) }}" required>
+                            placeholder="Input value" name="nama" value="{{ old('nama', $siswa->nama) }}" required>
                         @error('nama')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -60,7 +62,7 @@
                         <label for="tempat_lahir">Tempat Lahir :</label>
                         <input type="text"
                             class="form-control border border-secondary @error('tempat_lahir') is-invalid @enderror"
-                            id="tempat_lahir" placeholder="name@example.com" name="tempat_lahir"
+                            id="tempat_lahir" placeholder="Input value" name="tempat_lahir"
                             value="{{ old('tampat_lahir', $siswa->tempat_lahir) }}" required>
                         @error('tempat_lahir')
                             <div class="invalid-feedback">
@@ -72,7 +74,7 @@
                         <label for="tgl_lahir">Tanggal Lahir :</label>
                         <input type="date"
                             class="form-control border border-secondary @error('tgl_lahir') is-invalid @enderror"
-                            id="tgl_lahir" placeholder="name@example.com" name="tgl_lahir" value="{{ $siswa->tgl_lahir }}">
+                            id="tgl_lahir" placeholder="Input value" name="tgl_lahir" value="{{ $siswa->tgl_lahir }}">
                         @error('tgl_lahir')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -145,7 +147,7 @@
                         <label for="nohp_siswa">N0 HP Siswa :</label>
                         <input type="number"
                             class="form-control border border-secondary @error('nohp_siswa') is-invalid @enderror"
-                            id="nohp_siswa" placeholder="name@example.com" name="nohp_siswa"
+                            id="nohp_siswa" placeholder="Input value" name="nohp_siswa"
                             value="{{ old('nohp_siswa', $siswa->nohp_siswa) }}" required>
                         @error('nohp_siswa')
                             <div class="invalid-feedback">
@@ -158,7 +160,7 @@
                         <label for="nama_ayah">Nama Ayah :</label>
                         <input type="text"
                             class="form-control border border-secondary @error('nama_ayah') is-invalid @enderror"
-                            id="nama_ayah" placeholder="name@example.com" name="nama_ayah"
+                            id="nama_ayah" placeholder="Input value" name="nama_ayah"
                             value="{{ old('nama_ayah', $siswa->nama_ayah) }}" required>
                         @error('nama_ayah')
                             <div class="invalid-feedback">
@@ -171,7 +173,7 @@
                         <label for="nama_ibu">Nama Ibu :</label>
                         <input type="text"
                             class="form-control border border-secondary @error('nama_ibu') is-invalid @enderror"
-                            id="nama_ibu" placeholder="name@example.com" name="nama_ibu"
+                            id="nama_ibu" placeholder="Input value" name="nama_ibu"
                             value="{{ old('nama_ibu', $siswa->nama_ibu) }}" required>
                         @error('nama_ibu')
                             <div class="invalid-feedback">
@@ -184,7 +186,7 @@
                         <label for="nohp_ortu">No HP Orang Tua :</label>
                         <input type="number"
                             class="form-control border border-secondary @error('nohp_ortu') is-invalid @enderror"
-                            id="nohp_ortu" placeholder="name@example.com" name="nohp_ortu"
+                            id="nohp_ortu" placeholder="Input value" name="nohp_ortu"
                             value="{{ old('nohp_ortu', $siswa->nohp_ortu) }}" required>
                         @error('nohp_ortu')
                             <div class="invalid-feedback">
@@ -196,7 +198,7 @@
                         <label for="alamat">Alamat :</label>
                         <input type="text"
                             class="form-control border border-secondary @error('alamat') is-invalid @enderror"
-                            id="alamat" placeholder="name@example.com" name="alamat"
+                            id="alamat" placeholder="Input value" name="alamat"
                             value="{{ old('alamat', $siswa->alamat) }}" required>
                         @error('alamat')
                             <div class="invalid-feedback">
@@ -241,6 +243,21 @@
                                 {{ $message }}
                             </div>
                         @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="active">Active :</label>
+                        <select class="form-select @error('active') is-invalid @enderror"
+                            aria-label="Default select example" name="active"
+                            value="{{ old('active') }}">
+                            @error('active')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            {{-- <option selected disabled>Pilih</option> --}}
+                            <option value="1" @if($siswa->active == '1') selected @endif>Active</option>
+                            <option value="0" @if($siswa->active == '0') selected @endif>Tidak Active</option>
+                        </select>
                     </div>
                     <div class="col lg-6">
                         <button class="btn btn-success m-2" name="simpan" type="submit">Simpan</button>

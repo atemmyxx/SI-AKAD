@@ -1,5 +1,8 @@
 @extends('dashboardAdmin.layout')
 @section('content')
+@if (getSiswaFirstValue(Auth::user()->id)[0]->active == 0)
+<p style="font-size:16px;padding:20px;">Akun anda belum di verifikasi oleh sistem, silahkan tunggu beberapa waktu lagi.</p>
+@else
     <div class="row">
         <div class="col-sm-6">
             <div class="card mb-5">
@@ -42,4 +45,5 @@
             </div>
         </div>
     </div>
+@endif
 @endsection
